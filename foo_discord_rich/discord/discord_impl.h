@@ -43,6 +43,8 @@ public:
     ~PresenceModifier();
 
     void UpdateImage();
+    void UpdateImage( std::string IMAGE_URL );
+    void DoImageRoutine();
     void UpdateSmallImage();
     void UpdateTrack( metadb_handle_ptr metadb = metadb_handle_ptr() );
     void UpdateDuration( double time );

@@ -138,6 +138,20 @@ void PresenceModifier::UpdateImage()
     }
 }
 
+void PresenceModifier::UpdateImage(std::string IMAGE_URL)
+{
+    auto& pd = presenceData_;
+    auto pc = playback_control::get();
+
+    auto setImageKey = [&pd]( const std::u8string& imageKey )
+    {
+        pd.largeImageKey = imageKey;
+        pd.presence.largeImageKey = pd.largeImageKey.empty() ? nullptr : pd.largeImageKey.c_str();
+    };
+
+     setImageKey( IMAGE_URL );
+}
+
 void PresenceModifier::UpdateSmallImage()
 {
     auto& pd = presenceData_;
@@ -168,6 +182,11 @@ void PresenceModifier::UpdateSmallImage()
         break;
     }
     }
+}
+
+void PresenceModifier::DoImageRoutine()
+{
+    UpdateImage();
 }
 
 void PresenceModifier::UpdateTrack( metadb_handle_ptr metadb )
